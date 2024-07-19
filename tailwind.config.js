@@ -29,7 +29,7 @@ export default {
           primary: '#32657c', // primary color
           'primary-focus': '#be551d', // primary color (darker version)
           'primary-content': '#ffffff', // text color for primary color
-          secondary: '#c49ad2', // secondary color
+          secondary: '#87baff', // secondary color
           'secondary-focus': '#0b3b73', // secondary color (darker version)
           'secondary-content': '#1f2937', // text color for secondary color
           accent: '#739176', // accent color
