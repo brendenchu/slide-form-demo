@@ -21,12 +21,12 @@ class NewStoryController extends Controller
      */
     public function create(TokenService $tokenService): Response|RedirectResponse
     {
-        // if published token exists, redirect to complete story page
+        // if draft token exists, redirect to continue story page
         if ($token = $tokenService
             ->bypassExpiration()
             ->bypassRevocation()
-            ->getTokenByProjectStatus(ProjectStatus::PUBLISHED)) {
-            return to_route('story.complete', [
+            ->getTokenByProjectStatus(ProjectStatus::DRAFT)) {
+            return to_route('story.continue', [
                 'project' => $token->project,
                 'token' => $token,
             ]);
@@ -46,6 +46,7 @@ class NewStoryController extends Controller
         // redirect to first section of story form
         return to_route('story.form', [
             'project' => $project,
+            'step' => 'intro',
             'token' => $token->public_id,
         ]);
     }
