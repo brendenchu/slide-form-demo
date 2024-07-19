@@ -1,0 +1,39 @@
+# Rename this file .chipperci.yml
+# and put it in the root of your project
+version: 1
+
+environment:
+  php: 8.2
+  node: 20
+
+services:
+  - postgres: 13
+  - redis:
+
+pipeline:
+  - name: Setup Laravel
+    cmd: |
+      cp -v .env.example .env
+      # aws s3 cp s3://my-secret-bucket/env-ci .env
+
+      composer install --no-interaction --prefer-dist --optimize-autoloader
+
+      php artisan key:generate
+      # php artisan passport:keys
+
+  - name: Build Assets
+    cmd: |
+      # Typically only needed if your mix-manifest.json file is in .gitignore
+      if [[ -f "yarn.lock" ]]; then
+          yarn
+          yarn build # Vite
+          # yarn dev # Mix
+      else
+          npm ci --no-audit
+          npm run build # Vite
+          # npm run dev # Mix
+      fi
+
+  - name: Run Tests
+    cmd: |
+      ./vendor/bin/phpunit

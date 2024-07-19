@@ -2,26 +2,39 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+    // if user is client, redirect to story
+    if (auth()->check() && auth()->user()->hasRole(['client'])) {
+        return Redirect::route('story');
+    }
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+    // if user is admin, redirect to admin dashboard
+    if (auth()->check() && auth()->user()->hasRole(['admin', 'super-admin'])) {
+        return Redirect::route('admin.dashboard');
+    }
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    // if user is consultant, redirect to consultant dashboard
+    if (auth()->check() && auth()->user()->hasRole(['consultant'])) {
+        return Redirect::route('dashboard.consultant');
+    }
+
+    return Redirect::route('login');
+})->name('home');
+
+Route::middleware('auth:sanctum')->group(function () {
+
+    // Admin Module
+    require __DIR__ . '/modules/admin.php';
+
+    // Account Module
+    require __DIR__ . '/modules/account.php';
+
+    // Story Module
+    require __DIR__ . '/modules/story.php';
 });
 
 require __DIR__.'/auth.php';
