@@ -50,8 +50,8 @@ class PublishStoryController extends Controller
                 ->saveLastPosition('complete');
 
             // send email notification to admin
-//            Mail::to(config('mail.from.address'))
-//                ->send(new StoryPublished($tokenService->getToken($project)->user));
+            //            Mail::to(config('mail.from.address'))
+            //                ->send(new StoryPublished($tokenService->getToken($project)->user));
 
             // flash success message
             session()->flash('success', 'Your form has been submitted.');

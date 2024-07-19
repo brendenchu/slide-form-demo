@@ -1,10 +1,7 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 Route::get('/', function () {
     // if user is client, redirect to story
@@ -37,4 +34,4 @@ Route::middleware('auth:sanctum')->group(function () {
     require __DIR__ . '/modules/story.php';
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

@@ -13,11 +13,8 @@ trait HasPublicId
     protected static function bootHasPublicId(): void
     {
         static::creating(function ($model) {
-            if ($model instanceof Uuidable) {
-                $model->public_id = Str::lower(Str::uuid());
-            } else {
-                $model->public_id = Str::random(12);
-            }
+            $publicId = $model instanceof Uuidable ? Str::lower(Str::uuid()) : Str::random(12);
+            $model->public_id = $publicId;
         });
     }
 

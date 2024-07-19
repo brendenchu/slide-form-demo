@@ -2,6 +2,4 @@
 
 namespace App\Interfaces;
 
-interface Uuidable
-{
-}
+interface Uuidable {}

@@ -20,7 +20,7 @@ class TeamResource extends JsonResource
             'name' => $this->label,
             'description' => $this->description,
             'status' => $this->status->label(),
-            'current' => $request->user()->currentTeam()->is($this),
+            'current' => $request->user()->currentTeam()->is($this->resource),
         ];
     }
 }

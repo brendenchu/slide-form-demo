@@ -11,8 +11,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @method static firstOrCreate(array $array, array $array1)
- * @method static create(array $array)
  * @method static where(string $string, Token|string $token)
+ * @method static create(array $array)
  */
 class Token extends Model implements Uuidable
 {
@@ -32,20 +32,6 @@ class Token extends Model implements Uuidable
     ];
 
     /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
-    {
-        return [
-            'settings' => 'array',
-            'expires_at' => 'datetime',
-            'revoked_at' => 'datetime',
-        ];
-    }
-
-    /**
      * Get the user that owns the Token
      */
     public function user(): BelongsTo
@@ -59,5 +45,19 @@ class Token extends Model implements Uuidable
     public function project(): BelongsTo
     {
         return $this->belongsTo(Project::class);
+    }
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'settings' => 'array',
+            'expires_at' => 'datetime',
+            'revoked_at' => 'datetime',
+        ];
     }
 }
