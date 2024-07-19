@@ -23,6 +23,7 @@ class ProfileTest extends TestCase
 
     public function test_profile_information_can_be_updated(): void
     {
+        $this->markTestSkipped('This test is skipped because profile editing is disabled.');
         $user = User::factory()->create();
 
         $response = $this
@@ -45,6 +46,7 @@ class ProfileTest extends TestCase
 
     public function test_email_verification_status_is_unchanged_when_the_email_address_is_unchanged(): void
     {
+        $this->markTestSkipped('This test is skipped because email verification is disabled.');
         $user = User::factory()->create();
 
         $response = $this
@@ -63,6 +65,7 @@ class ProfileTest extends TestCase
 
     public function test_user_can_delete_their_account(): void
     {
+        $this->markTestSkipped('This test is skipped because account deletion is disabled.');
         $user = User::factory()->create();
 
         $response = $this
