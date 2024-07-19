@@ -1,5 +1,6 @@
 <script lang="ts" setup>
   import FlashProvider from '@/Components/Flash/FlashProvider.vue'
+  import PageFooter from '@/Components/PageFooter.vue'
 
   defineProps<{
     published?: boolean
@@ -23,6 +24,9 @@
       <main class="stretched">
         <slot />
       </main>
+
+      <!-- Page Footer -->
+      <PageFooter />
     </div>
   </FlashProvider>
 </template>

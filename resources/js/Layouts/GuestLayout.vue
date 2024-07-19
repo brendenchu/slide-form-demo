@@ -1,5 +1,6 @@
-<script setup lang="ts">
+<script lang="ts" setup>
   import ApplicationLogo from '@/Components/ApplicationLogo.vue'
+  import PageFooter from '@/Components/PageFooter.vue'
 </script>
 
 <template>
@@ -9,6 +10,8 @@
         <ApplicationLogo class="fill-current text-gray-500" />
       </div>
       <slot />
+      <!-- Page Footer -->
+      <PageFooter />
     </div>
   </div>
 </template>

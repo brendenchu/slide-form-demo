@@ -4,6 +4,7 @@
   import DropdownLink from '@/Components/DropdownLink.vue'
   import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue'
   import FlashProvider from '@/Components/Flash/FlashProvider.vue'
+  import PageFooter from '@/Components/PageFooter.vue'
 
   const showingNavigationDropdown = ref(false)
 </script>
@@ -32,17 +33,17 @@
                         type="button"
                       >
                         <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          height="24"
-                          width="24"
-                          viewBox="0 0 512 512"
                           fill="currentColor"
+                          height="24"
+                          viewBox="0 0 512 512"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
                           <!--!Font Awesome Pro 6.5.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc.-->
                           <path
                             class="fa-secondary"
-                            opacity=".4"
                             d="M399 384.2C376.9 345.8 335.4 320 288 320H224c-47.4 0-88.9 25.8-111 64.2c35.2 39.2 86.2 63.8 143 63.8s107.8-24.7 143-63.8zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm256 16a72 72 0 1 0 0-144 72 72 0 1 0 0 144z"
+                            opacity=".4"
                           />
                           <path
                             class="fa-primary"
@@ -73,7 +74,7 @@
                       <small class="text-gray-600">{{ $page.props.auth.user.email }}</small>
                     </div>
                     <DropdownLink :href="route('profile.edit')"> Profile</DropdownLink>
-                    <DropdownLink :href="route('logout')" as="button" method="post"> Log Out</DropdownLink>
+                    <DropdownLink :href="route('logout')" as="button" method="post"> Log Out </DropdownLink>
                   </template>
                 </Dropdown>
               </div>
@@ -123,7 +124,7 @@
             </div>
             <div class="mt-3 space-y-1">
               <ResponsiveNavLink :href="route('profile.edit')"> Profile</ResponsiveNavLink>
-              <ResponsiveNavLink :href="route('logout')" as="button" method="post"> Log Out</ResponsiveNavLink>
+              <ResponsiveNavLink :href="route('logout')" as="button" method="post"> Log Out </ResponsiveNavLink>
             </div>
           </div>
         </div>
@@ -140,6 +141,9 @@
       <main class="stretched">
         <slot />
       </main>
+
+      <!-- Page Footer -->
+      <PageFooter />
     </div>
   </FlashProvider>
 </template>
