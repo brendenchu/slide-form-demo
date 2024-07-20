@@ -30,30 +30,94 @@ class SectionCFormRequest extends FormRequest
     {
         return match ($this->page) {
             1 => [
-                'section_c_1' => 'nullable|boolean',
-                'section_c_2' => 'nullable|boolean',
-                'section_c_3' => 'nullable|boolean',
-                'section_c_4' => 'nullable',
-                'section_c_5' => 'nullable',
-                'section_c_6' => 'nullable',
+                'section_c_1' => ['required',
+                    function ($attribute, $value, $fail) {
+                        // Capital city of France
+                        if ($value !== 'Paris') {
+                            $fail('Sorry, that is incorrect.');
+                        }
+                    },
+                ],
             ],
             2 => [
-                'section_c_4' => 'nullable|required_if_accepted:section_c_1|numeric',
-                'section_c_5' => 'nullable|required_if_accepted:section_c_2|numeric',
-                'section_c_6' => 'nullable|required_if_accepted:section_c_3|numeric',
+                'section_c_2' => ['required',
+                    function ($attribute, $value, $fail) {
+                        // Capital city of Japan
+                        if ($value !== 'Tokyo') {
+                            $fail('Sorry, that is incorrect.');
+                        }
+                    },
+                ],
             ],
             3 => [
-                'section_c_7' => 'nullable|boolean',
-                'section_c_8' => 'nullable|boolean',
-                'section_c_9' => 'nullable|boolean',
-                'section_c_10' => 'nullable',
-                'section_c_11' => 'nullable',
-                'section_c_12' => 'nullable',
+                'section_c_3' => ['required',
+                    function ($attribute, $value, $fail) {
+                        // Capital city of Australia
+                        if ($value !== 'Canberra') {
+                            $fail('Sorry, that is incorrect.');
+                        }
+                    },
+                ],
             ],
             4 => [
-                'section_c_10' => 'nullable|required_if_accepted:section_c_7|numeric',
-                'section_c_11' => 'nullable|required_if_accepted:section_c_8|numeric',
-                'section_c_12' => 'nullable|required_if_accepted:section_c_9|numeric',
+                'section_c_4' => ['required',
+                    function ($attribute, $value, $fail) {
+                        // Capital city of Canada
+                        if ($value !== 'Ottawa') {
+                            $fail('Sorry, that is incorrect.');
+                        }
+                    },
+                ],
+            ],
+            5 => [
+                'section_c_5' => ['required',
+                    function ($attribute, $value, $fail) {
+                        // Capital city of India
+                        if ($value !== 'New Delhi') {
+                            $fail('Sorry, that is incorrect.');
+                        }
+                    },
+                ],
+            ],
+            6 => [
+                'section_c_6' => ['required',
+                    function ($attribute, $value, $fail) {
+                        // Capital city of Brazil
+                        if ($value !== 'Brasilia') {
+                            $fail('Sorry, that is incorrect.');
+                        }
+                    },
+                ],
+            ],
+            7 => [
+                'section_c_7' => ['required',
+                    function ($attribute, $value, $fail) {
+                        // Capital city of Denmark
+                        if ($value !== 'Copenhagen') {
+                            $fail('Sorry, that is incorrect.');
+                        }
+                    },
+                ],
+            ],
+            8 => [
+                'section_c_8' => ['required',
+                    function ($attribute, $value, $fail) {
+                        // Capital city of Kenya
+                        if ($value !== 'Nairobi') {
+                            $fail('Sorry, that is incorrect.');
+                        }
+                    },
+                ],
+            ],
+            9 => [
+                'section_c_9' => ['required',
+                    function ($attribute, $value, $fail) {
+                        // Not a Capital city of South Africa
+                        if ($value !== 'Johannesburg') {
+                            $fail('Sorry, that is incorrect.');
+                        }
+                    },
+                ],
             ],
             default => [],
         };
@@ -67,24 +131,15 @@ class SectionCFormRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'section_c_1.boolean' => 'This field must be a boolean.',
-            'section_c_2.boolean' => 'This field must be a boolean.',
-            'section_c_3.boolean' => 'This field must be a boolean.',
-            'section_c_4.required_if' => 'This field is required.',
-            'section_c_4.numeric' => 'This field must be a number.',
-            'section_c_5.required_if' => 'This field is required.',
-            'section_c_5.numeric' => 'This field must be a number.',
-            'section_c_6.required_if' => 'This field is required.',
-            'section_c_6.numeric' => 'This field must be a number.',
-            'section_c_7.boolean' => 'This field must be a boolean.',
-            'section_c_8.boolean' => 'This field must be a boolean.',
-            'section_c_9.boolean' => 'This field must be a boolean.',
-            'section_c_10.required_if' => 'This field is required.',
-            'section_c_10.numeric' => 'This field must be a number.',
-            'section_c_11.required_if' => 'This field is required.',
-            'section_c_11.numeric' => 'This field must be a number.',
-            'section_c_12.required_if' => 'This field is required.',
-            'section_c_12.numeric' => 'This field must be a number.',
+            'section_c_1.required' => 'Please select one of the options.',
+            'section_c_2.required' => 'Please select one of the options.',
+            'section_c_3.required' => 'Please select one of the options.',
+            'section_c_4.required' => 'Please select one of the options.',
+            'section_c_5.required' => 'Please select one of the options.',
+            'section_c_6.required' => 'Please select one of the options.',
+            'section_c_7.required' => 'Please select one of the options.',
+            'section_c_8.required' => 'Please select one of the options.',
+            'section_c_9.required' => 'Please select one of the options.',
         ];
     }
 }

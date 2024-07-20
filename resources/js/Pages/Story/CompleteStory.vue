@@ -3,7 +3,7 @@
   import StoryLayout from '@/Layouts/StoryLayout.vue'
   import { Project, ProjectStep } from '@/types'
   import PrimaryButton from '@/Components/PrimaryButton.vue'
-  import { LogoutButton, ProgressBar, ProgressTimeline } from '@/Components/Story/v1/UI'
+  import { ProgressBar, ProgressTimeline } from '@/Components/Story/v1/UI'
   import axios from 'axios'
 
   defineProps<{
@@ -13,6 +13,10 @@
     allSteps: Record<string, string>
   }>()
 
+  const newForm = () => {
+    window.location.href = route('story.create')
+  }
+
   function logoutUser() {
     axios.post(route('logout')).then(() => {
       window.location.href = route('home')
@@ -21,32 +25,29 @@
 </script>
 
 <template>
-  <Head title="Slide Form Demo" />
+  <Head title="Form Complete!" />
   <StoryLayout>
     <template #top>
-      <div class="p-2 flex justify-between items-start gap-2 bg-base-200">
-        <h2 class="text-3xl">You have completed the Slide Form Demo</h2>
-        <div class="flex justify-between items-start gap-2">
-          <ProgressTimeline
-            v-once
-            class="hidden lg:flex lg:justify-center"
-            :project="project"
-            :step="step"
-            :token="token"
-          />
-          <LogoutButton />
-        </div>
+      <div class="flex justify-between items-start gap-2">
+        <ProgressTimeline
+          v-once
+          :project="project"
+          :step="step"
+          :token="token"
+          class="hidden lg:flex lg:justify-center"
+        />
       </div>
-      <ProgressBar class="lg:hidden" :step="step" />
     </template>
+    <ProgressBar :step="step" class="lg:hidden" />
     <section class="stretched">
       <div class="stretched contained centered">
-        <div class="w-1/2 prose">
+        <div class="prose prose-2xl">
+          <h2>Form Complete!</h2>
           <p>Congratulations! You have completed the Slide Form Demo.</p>
-          <p>From here, you have two options:</p>
+          <p>From here, you have three options:</p>
           <ol>
             <li>
-              <p>You can revisit any of the sections of the form to make changes.</p>
+              <p>You can revisit any of the sections.</p>
               <ul class="prose-sm">
                 <li v-for="(name, slug) in allSteps" :key="slug">
                   <Link :href="route('story.form', { project: project.id, step: slug, token })" class="hover:font-bold">
@@ -56,8 +57,12 @@
               </ul>
             </li>
             <li>
+              <p>You can fill out the form again, though I don't know why you would want to do that.</p>
+              <PrimaryButton class="lg:btn-lg xl:btn-xl btn-outline" @click="newForm"> Start New Form </PrimaryButton>
+            </li>
+            <li>
               <p>You can log out and have a great day!</p>
-              <PrimaryButton class="btn-sm" @click="logoutUser"> Log Out</PrimaryButton>
+              <PrimaryButton class="lg:btn-lg xl:btn-xl btn-outline" @click="logoutUser"> Log Out </PrimaryButton>
             </li>
           </ol>
         </div>

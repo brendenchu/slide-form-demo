@@ -10,6 +10,16 @@ enum ProjectStep: string
     case STEP_THREE = 'section-c';
     case COMPLETE = 'complete';
 
+    public static function allSteps(): array
+    {
+        return [
+            'intro' => 'Introduction',
+            'section-a' => 'Section A',
+            'section-b' => 'Section B',
+            'section-c' => 'Section C',
+        ];
+    }
+
     public function key(): int
     {
         return match ($this) {
@@ -41,16 +51,6 @@ enum ProjectStep: string
             self::STEP_THREE => 'Section C',
             self::COMPLETE => 'Complete',
         };
-    }
-
-    public static function allSteps(): array
-    {
-        return [
-            'intro' => 'Introduction',
-            'section-a' => 'Section A',
-            'section-b' => 'Section B',
-            'section-c' => 'Section C',
-        ];
     }
 
     public function fields(): array
@@ -90,9 +90,6 @@ enum ProjectStep: string
                 'section_c_7',
                 'section_c_8',
                 'section_c_9',
-                'section_c_10',
-                'section_c_11',
-                'section_c_12',
             ],
             self::COMPLETE => [],
         };

@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
   import { Slide } from '@/Components/Slide'
   import { InertiaForm, useForm } from '@inertiajs/vue3'
   import { Checkbox, Error, Field, Fieldset, GroupWrapper, Label } from '@/Components/Form'
@@ -110,29 +110,32 @@
 
 <template>
   <form class="stretched prose">
-    <Slide :current="current" :pages="pages" :actions="actions" :direction="formDirection">
+    <Slide :actions="actions" :current="current" :direction="formDirection" :pages="pages">
       <template #page-1>
         <Fieldset>
-          <div>
-            <p>Here's a slightly different layout.</p>
+          <div class="prose prose-2xl pb-4">
+            <p>
+              Now, let's try a little experiment. Select one or more checkboxes below. You may also select none, if you
+              prefer.
+            </p>
           </div>
-          <GroupWrapper grid>
+          <GroupWrapper>
             <div class="flex gap-3">
               <Checkbox id="section_a_1" v-model:checked="form.section_a_1" :value="1" />
               <Label for="section_a_1">
-                <strong class="text-2xl">Checkbox 1</strong>
+                <strong class="text-2xl">Checkbox A1</strong>
               </Label>
             </div>
             <div class="flex gap-3">
               <Checkbox id="section_a_2" v-model:checked="form.section_a_2" :value="1" />
               <Label for="section_a_2">
-                <strong class="text-2xl">Checkbox 2</strong>
+                <strong class="text-2xl">Checkbox A2</strong>
               </Label>
             </div>
             <div class="flex gap-3">
               <Checkbox id="section_a_3" v-model:checked="form.section_a_3" :value="1" />
               <Label for="section_a_3">
-                <strong class="text-2xl">Checkbox 3</strong>
+                <strong class="text-2xl">Checkbox A3</strong>
               </Label>
             </div>
           </GroupWrapper>
@@ -140,29 +143,60 @@
       </template>
       <template #page-2>
         <Fieldset>
+          <div class="prose prose-2xl pb-4">
+            <p>
+              Depending on the checkboxes you selected, you will see one or more questions below. If you didn't select
+              any checkboxes, you would have skipped to the next section.
+            </p>
+          </div>
           <GroupWrapper>
             <div v-if="form.section_a_1">
               <Label for="section_a_4">
-                <strong>Question 1</strong>
-                <small> You see this question because you ticked Checkbox 1. </small>
+                <strong>What is the current year?</strong>
+                <small> You see this question because you ticked Checkbox A1. </small>
               </Label>
-              <Field id="section_a_4" v-model="form.section_a_4" class="form-field" type="number" />
+              <Field
+                id="section_a_4"
+                v-model="form.section_a_4"
+                aria-placeholder="YYYY"
+                class="form-field"
+                placeholder="YYYY"
+                type="number"
+              />
               <Error :message="form.errors.section_a_4" class="mt-1" />
             </div>
             <div v-if="form.section_a_2">
               <Label for="section_a_5">
-                <strong>Question 2</strong>
-                <small> You see this question because you ticked Checkbox 2. </small>
+                <strong>What is the current month?</strong>
+                <small> You see this question because you ticked Checkbox A2. </small>
               </Label>
-              <Field id="section_a_5" v-model="form.section_a_5" class="form-field" type="number" />
+              <Field
+                id="section_a_5"
+                v-model="form.section_a_5"
+                aria-placeholder="MM"
+                class="form-field"
+                max="12"
+                min="1"
+                placeholder="MM"
+                type="number"
+              />
               <Error :message="form.errors.section_a_5" class="mt-1" />
             </div>
             <div v-if="form.section_a_3">
               <Label for="section_a_6">
-                <strong>Question 3</strong>
-                <small> You see this question because you ticked Checkbox 3. </small>
+                <strong>What is the current day?</strong>
+                <small> You see this question because you ticked Checkbox A3. </small>
               </Label>
-              <Field id="section_a_6" v-model="form.section_a_6" class="form-field" type="number" />
+              <Field
+                id="section_a_6"
+                v-model="form.section_a_6"
+                aria-placeholder="DD"
+                class="form-field"
+                max="31"
+                min="1"
+                placeholder="DD"
+                type="number"
+              />
               <Error :message="form.errors.section_a_6" class="mt-1" />
             </div>
           </GroupWrapper>
@@ -172,4 +206,4 @@
   </form>
 </template>
 
-<style scoped lang="postcss"></style>
+<style lang="postcss" scoped></style>
