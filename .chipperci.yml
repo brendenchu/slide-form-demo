@@ -1,9 +1,17 @@
-# File .chipperci.yml, which goes in the root of your repository
 version: 1
 
+on:
+  pull_request:
+    branches:
+      - feature/.*
+      - bug/.*
+      - hotfix/.*
+      - release/.*
+      - main
+
 environment:
-  php: 8.2 # 7.1, 7.2, 7.3, 7.4, 8.0, 8.1, 8.2
-  node: 18 # 6, 8, 10, 12, 14, 16, 18
+  php: 8.2
+  node: 18
 
 services:
   - postgres: 13
