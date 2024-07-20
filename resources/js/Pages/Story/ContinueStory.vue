@@ -29,17 +29,17 @@
 </script>
 
 <template>
-  <Head title="Slide Form Demo" />
+  <Head title="Continue Form" />
   <StoryLayout>
     <template #top>
       <div class="p-2 flex justify-between items-start gap-2 bg-base-200">
         <h2 class="text-3xl">Slide Form Demo in Progress</h2>
         <div class="flex justify-between items-start gap-2">
-          <ProgressTimeline v-once class="hidden lg:flex lg:justify-center" :project="project" :step="step" />
+          <ProgressTimeline v-once :project="project" :step="step" class="hidden lg:flex lg:justify-center" />
           <LogoutButton />
         </div>
       </div>
-      <ProgressBar class="lg:hidden" :step="step" />
+      <ProgressBar :step="step" class="lg:hidden" />
     </template>
     <section class="stretched">
       <div class="stretched contained centered">

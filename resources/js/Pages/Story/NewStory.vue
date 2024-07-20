@@ -8,7 +8,7 @@
 </script>
 
 <template>
-  <Head title="Slide Form Demo" />
+  <Head title="New Form" />
   <StoryLayout>
     <template #top>
       <div class="p-2 flex justify-between items-start gap-2 bg-base-200">

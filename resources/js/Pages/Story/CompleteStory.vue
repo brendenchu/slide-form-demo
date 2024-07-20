@@ -21,7 +21,7 @@
 </script>
 
 <template>
-  <Head title="Slide Form Demo" />
+  <Head title="Form Complete!" />
   <StoryLayout>
     <template #top>
       <div class="p-2 flex justify-between items-start gap-2 bg-base-200">
@@ -29,15 +29,15 @@
         <div class="flex justify-between items-start gap-2">
           <ProgressTimeline
             v-once
-            class="hidden lg:flex lg:justify-center"
             :project="project"
             :step="step"
             :token="token"
+            class="hidden lg:flex lg:justify-center"
           />
           <LogoutButton />
         </div>
       </div>
-      <ProgressBar class="lg:hidden" :step="step" />
+      <ProgressBar :step="step" class="lg:hidden" />
     </template>
     <section class="stretched">
       <div class="stretched contained centered">
