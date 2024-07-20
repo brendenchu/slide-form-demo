@@ -1,39 +1,25 @@
-# Rename this file .chipperci.yml
-# and put it in the root of your project
+# File .chipperci.yml, which goes in the root of your repository
 version: 1
 
 environment:
-  php: 8.2
-  node: 20
+  php: 8.2    # 7.1, 7.2, 7.3, 7.4, 8.0, 8.1, 8.2
+  node: 18    # 6, 8, 10, 12, 14, 16, 18
 
-services:
-  - postgres: 13
-  - redis:
+#services:
+#  - mysql: 5.7
 
 pipeline:
-  - name: Setup Laravel
+  - name: Setup
     cmd: |
       cp -v .env.example .env
-      # aws s3 cp s3://my-secret-bucket/env-ci .env
-
       composer install --no-interaction --prefer-dist --optimize-autoloader
-
       php artisan key:generate
-      # php artisan passport:keys
 
-  - name: Build Assets
+  - name: Compile Dev Assets
     cmd: |
-      # Typically only needed if your mix-manifest.json file is in .gitignore
-      if [[ -f "yarn.lock" ]]; then
-          yarn
-          yarn build # Vite
-          # yarn dev # Mix
-      else
-          npm ci --no-audit
-          npm run build # Vite
-          # npm run dev # Mix
-      fi
+      npm ci --no-audit
+      npm run build # Vite
+      # npm run dev # Mix
 
   - name: Run Tests
-    cmd: |
-      ./vendor/bin/phpunit
+    cmd: phpunit
