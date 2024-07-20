@@ -1,6 +1,18 @@
 # File .chipperci.yml, which goes in the root of your repository
 version: 1
 
+# Decide what events trigger a build
+on:
+  # This will build on PR open, re-open, and update
+  # (Updates are when commits are pushed to a PR)
+  # Here we say to only build when a PR is opened/reopened/updated
+  # and the branch being pushed to
+  # is feature/.* or bug/.*
+  pull_request:
+    branches:
+      - feature/.*
+      - bug/.*
+
 environment:
   php: 8.2 # 7.1, 7.2, 7.3, 7.4, 8.0, 8.1, 8.2
   node: 18 # 6, 8, 10, 12, 14, 16, 18
