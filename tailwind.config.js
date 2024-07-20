@@ -14,8 +14,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Figtree', ...defaultTheme.fontFamily.sans],
-        display: ['Proxima Nova', ...defaultTheme.fontFamily.sans],
+        sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+        display: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
     },
   },
@@ -26,33 +26,33 @@ export default {
       {
         demo: {
           // your theme name
-          primary: '#32657c', // primary color
-          'primary-focus': '#be551d', // primary color (darker version)
+          primary: '#4c51bf', // primary color
+          'primary-focus': '#434190', // primary color (darker version)
           'primary-content': '#ffffff', // text color for primary color
-          secondary: '#87baff', // secondary color
-          'secondary-focus': '#0b3b73', // secondary color (darker version)
-          'secondary-content': '#1f2937', // text color for secondary color
-          accent: '#739176', // accent color
-          'accent-focus': '#1a202c', // accent color (darker version)
+          secondary: '#f000b8', // secondary color
+          'secondary-focus': '#bd0091', // secondary color (darker version)
+          'secondary-content': '#ffffff', // text color for secondary color
+          accent: '#37cdbe', // accent color
+          'accent-focus': '#2aa79b', // accent color (darker version)
           'accent-content': '#ffffff', // text color for accent color
-          neutral: '#1f2937', // neutral color
-          'neutral-focus': '#161e2e', // neutral color (darker version)
+          neutral: '#3d4451', // neutral color
+          'neutral-focus': '#2a2e37', // neutral color (darker version)
           'neutral-content': '#ffffff', // text color for neutral color
-          'base-100': '#ffffff', // base color of page, used for blank backgrounds
-          'base-200': '#f9fafb', // base color, a little darker
-          'base-300': '#d1d5db', // base color, even more darker
+          'base-100': '#ffffff', // base color
+          'base-200': '#f9fafb', // base color
+          'base-300': '#d1d5db', // base color
           'base-content': '#1f2937', // text color for base color
           info: '#2094f3', // info color
-          'info-focus': '#147dcb', // info color (darker version)
+          'info-focus': '#0573f2', // info color (darker version)
           'info-content': '#ffffff', // text color for info color
           success: '#009485', // success color
-          'success-focus': '#007a6c', // success color (darker version)
+          'success-focus': '#007a6b', // success color (darker version)
           'success-content': '#ffffff', // text color for success color
           warning: '#ff9900', // warning color
-          'warning-focus': '#d67c03', // warning color (darker version)
+          'warning-focus': '#f28500', // warning color (darker version)
           'warning-content': '#ffffff', // text color for warning color
           error: '#ff5724', // error color
-          'error-focus': '#f63000', // error color (darker version)
+          'error-focus': '#f13a04', // error color (darker version)
           'error-content': '#ffffff', // text color for error color
         },
       },
