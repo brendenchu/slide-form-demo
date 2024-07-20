@@ -12,7 +12,7 @@
   import { IntroForm, SectionAForm, SectionBForm, SectionCForm } from '@/Components/Story/v1/Forms'
   import { Direction } from '@/Components/Slide/types'
   import StoryLayout from '@/Layouts/StoryLayout.vue'
-  import { LogoutButton, ProgressBar, ProgressTimeline } from '@/Components/Story/v1/UI'
+  import { ProgressBar, ProgressTimeline } from '@/Components/Story/v1/UI'
 
   defineProps<{
     project: Project
@@ -26,25 +26,19 @@
 
 <template>
   <Head title="Form in progress" />
-  <StoryLayout>
+  <StoryLayout :title="step.name">
     <template #top>
-      <div class="p-2 flex justify-between items-start gap-2 bg-base-200">
-        <h2 class="text-3xl">
-          {{ step.name }}
-        </h2>
-        <div class="flex justify-between items-start gap-2">
-          <ProgressTimeline
-            v-once
-            :project="project"
-            :step="step"
-            :token="token"
-            class="hidden lg:flex lg:justify-center"
-          />
-          <LogoutButton />
-        </div>
+      <div class="flex justify-between items-start gap-2">
+        <ProgressTimeline
+          v-once
+          :project="project"
+          :step="step"
+          :token="token"
+          class="hidden lg:flex lg:justify-center"
+        />
       </div>
-      <ProgressBar :step="step" class="lg:hidden" />
     </template>
+    <ProgressBar :step="step" class="lg:hidden" />
     <IntroForm
       v-if="step.id === 'intro'"
       :direction="direction"

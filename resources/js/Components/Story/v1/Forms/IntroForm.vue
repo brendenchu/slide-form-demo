@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
   import { Slide } from '@/Components/Slide'
   import { InertiaForm, useForm } from '@inertiajs/vue3'
   import { Error, Field, Fieldset, Label } from '@/Components/Form'
@@ -93,11 +93,11 @@
 
 <template>
   <form class="stretched prose">
-    <Slide :current="current" :pages="pages" :actions="actions" :direction="formDirection">
+    <Slide :actions="actions" :current="current" :direction="formDirection" :pages="pages">
       <template #page-1>
         <Fieldset>
-          <div class="prose">
-            <p>Before we begin, we need to gather some personal information.</p>
+          <div class="prose prose-2xl pb-4">
+            <p>To start, let's get to know you a little better.</p>
           </div>
           <div>
             <Label for="intro_1">
@@ -126,4 +126,4 @@
   </form>
 </template>
 
-<style scoped lang="postcss"></style>
+<style lang="postcss" scoped></style>

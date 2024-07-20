@@ -136,9 +136,6 @@ export type SectionCFormFields = {
   section_c_7: string | null
   section_c_8: string | null
   section_c_9: string | null
-  section_c_10: string | null
-  section_c_11: string | null
-  section_c_12: string | null
 }
 
 export type AnyFormFields = IntroFormFields | SectionAFormFields | SectionBFormFields | SectionCFormFields

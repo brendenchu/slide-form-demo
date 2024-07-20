@@ -38,14 +38,30 @@ class SectionAFormRequest extends FormRequest
                 'section_a_6' => 'nullable',
             ],
             2 => [
-                'section_a_4' => 'nullable|required_if_accepted:section_a_1|numeric',
-                'section_a_5' => 'nullable|required_if_accepted:section_a_2|numeric',
-                'section_a_6' => 'nullable|required_if_accepted:section_a_3|numeric',
-            ],
-            3 => [
-                'section_a_7' => 'nullable|required_if_accepted:section_a_4|numeric',
-                'section_a_8' => 'nullable|required_if_accepted:section_a_5|numeric',
-                'section_a_9' => 'nullable|required_if_accepted:section_a_6|numeric',
+                'section_a_4' => ['nullable', 'required_if_accepted:section_a_1', 'numeric',
+                    function ($attribute, $value, $fail) {
+                        // fail if not current year
+                        if ($value !== date('Y')) {
+                            $fail('This field must be the current year.');
+                        }
+                    },
+                ],
+                'section_a_5' => ['nullable', 'required_if_accepted:section_a_2', 'numeric',
+                    function ($attribute, $value, $fail) {
+                        // fail if not current month
+                        if ($value !== date('n') && $value !== date('m')) {
+                            $fail('This field must be the current month.');
+                        }
+                    },
+                ],
+                'section_a_6' => ['nullable', 'required_if_accepted:section_a_3', 'numeric',
+                    function ($attribute, $value, $fail) {
+                        // fail if not current day
+                        if ($value !== date('j')) {
+                            $fail('This field must be the current day.');
+                        }
+                    },
+                ],
             ],
             default => [],
         };
