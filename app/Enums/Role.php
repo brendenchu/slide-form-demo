@@ -8,6 +8,7 @@ enum Role: string
     case Admin = 'admin';
     case Consultant = 'consultant';
     case Client = 'client';
+    case Guest = 'guest';
 
     public static function getInstances(): array
     {
@@ -16,6 +17,7 @@ enum Role: string
             self::Admin,
             self::Consultant,
             self::Client,
+            self::Guest,
         ];
     }
 

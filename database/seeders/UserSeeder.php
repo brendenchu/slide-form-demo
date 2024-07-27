@@ -25,15 +25,15 @@ class UserSeeder extends Seeder
 
         $user->assignRole(Role::SuperAdmin);
 
-        // Create Client
+        // Create Guest
         $user = User::create([
-            'name' => config('demo.client_name'),
-            'email' => config('demo.client_email'),
-            'password' => bcrypt(config('demo.client_password')),
+            'name' => config('demo.guest_name'),
+            'email' => config('demo.guest_email'),
+            'password' => bcrypt(config('demo.guest_password')),
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),
         ]);
 
-        $user->assignRole(Role::Client);
+        $user->assignRole(Role::Guest);
     }
 }

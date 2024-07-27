@@ -32,9 +32,12 @@
     <div v-if="status" class="mb-3 font-medium text-sm text-green-600">
       {{ status }}
     </div>
+    <div class="mb-3">
+      <small>Enter 'guest' as the username and password to log in as a guest.</small>
+    </div>
     <form @submit.prevent="submit">
       <div>
-        <InputLabel for="email" value="Email" />
+        <InputLabel for="email" value="Email or Username" />
         <InputField
           id="email"
           v-model="form.email"
@@ -42,7 +45,7 @@
           autofocus
           class="mt-1 block w-full"
           required
-          type="email"
+          type="text"
         />
         <InputError :message="form.errors.email" class="mt-1" />
       </div>
