@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     // if user is client, redirect to story
-    if (auth()->check() && auth()->user()->hasRole(['client'])) {
+    if (auth()->check() && auth()->user()->hasRole(['client', 'guest'])) {
         return Redirect::route('story');
     }
 

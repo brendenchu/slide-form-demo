@@ -27,21 +27,25 @@ class SaveFormController extends Controller
             // flash error message
             session()->flash('error', 'Invalid form ID or token.');
         }
-        // save the validated responses
-        $projectService
-            ->setProject($request->project['id'])
-            ->setSteps($request->step['id'])
-            ->saveResponses($request->validated());
 
-        // save the last position
-        $tokenService
-            ->setToken($request->token)
-            ->saveLastPosition(
-                $request->step['id'],
-                $request->page
-            );
+        // if the user is not a guest, save the responses
+        if (! auth()->user()->hasRole('guest')) {
+            // save the validated responses
+            $projectService
+                ->setProject($request->project['id'])
+                ->setSteps($request->step['id'])
+                ->saveResponses($request->validated());
 
-        // flash success message
+            // save the last position
+            $tokenService
+                ->setToken($request->token)
+                ->saveLastPosition(
+                    $request->step['id'],
+                    $request->page
+                );
+        }
+
+            // flash success message
         session()->flash('success', 'Your responses have been saved.');
     }
 }
