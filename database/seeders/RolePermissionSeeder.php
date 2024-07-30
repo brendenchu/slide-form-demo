@@ -78,5 +78,9 @@ class RolePermissionSeeder extends Seeder
             PermissionEnum::CreateProject,
         ]);
 
+        $role = Role::findByName(RoleEnum::Guest->value);
+        $role->givePermissionTo([
+            PermissionEnum::ViewProject,
+        ]);
     }
 }

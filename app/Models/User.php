@@ -47,44 +47,6 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-            'settings' => 'array',
-        ];
-    }
-
-    /**
-     * The profile that belongs to the user.
-     */
-    public function profile(): HasOne
-    {
-        return $this->hasOne(Profile::class);
-    }
-
-    /**
-     * The teams that belong to the user.
-     */
-    public function teams(): BelongsToMany
-    {
-        return $this->belongsToMany(Team::class, 'users_teams');
-    }
-
-    /**
-     * Get the current team.
-     */
-    public function currentTeam(): Team
-    {
-        return $this->teams->firstWhere('key', $this->setting('current_team'));
-    }
-
-    /**
      * The "booting" method of the model.
      */
     protected static function booted(): void
@@ -116,10 +78,48 @@ class User extends Authenticatable
     }
 
     /**
+     * The profile that belongs to the user.
+     */
+    public function profile(): HasOne
+    {
+        return $this->hasOne(Profile::class);
+    }
+
+    /**
+     * The teams that belong to the user.
+     */
+    public function teams(): BelongsToMany
+    {
+        return $this->belongsToMany(Team::class, 'users_teams');
+    }
+
+    /**
      * Create a new factory instance for the model.
      */
     protected static function newFactory(): Factory
     {
         return UserFactory::new();
+    }
+
+    /**
+     * Get the current team.
+     */
+    public function currentTeam(): Team
+    {
+        return $this->teams->firstWhere('key', $this->setting('current_team'));
+    }
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'email_verified_at' => 'datetime',
+            'password' => 'hashed',
+            'settings' => 'array',
+        ];
     }
 }
